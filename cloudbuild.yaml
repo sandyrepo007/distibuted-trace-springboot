@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'account-service', './account-service']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'payment-service', './payment-service']  
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'credit-service', './credit-service']  
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'profile-service', './profile-service']      

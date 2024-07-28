@@ -1,0 +1,53 @@
+spring:
+  jaeger:
+    enabled: true
+    #    probabilistic-sampler:
+    #      sampling-rate: 1.0
+    log-spans: true
+    udp-sender:
+      host: localhost
+      port: 6831
+    # demonstration purpose only
+    const-sampler:
+      decision: true
+    service-name: payment-service
+
+server:
+  port: 8087
+
+
+# feign configuration
+feign:
+  okhttp:
+    enabled: false
+  httpclient:
+    enabled: true
+  client:
+    config:
+      # credit service connection configuration
+      credit:
+        connectTimeout: 5000
+        readTimeout: 10000
+        loggerLevel: full
+
+client:
+  credit:
+    name: credit
+    url: http://localhost:8085
+
+# logbook
+logbook:
+  format:
+    style: json
+  include:
+    - /paymentInfo/**
+  exclude:
+    - /favicon.ico
+    - /actuator/**
+logging:
+  level:
+    ROOT: INFO
+    org:
+      zalando:
+        logbook: TRACE
+

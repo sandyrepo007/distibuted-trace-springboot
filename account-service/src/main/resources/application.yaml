@@ -1,0 +1,59 @@
+#server:
+#  port: 8088
+opentracing:
+  spring:
+    cloud:
+      log:
+        enabled: true
+  jaeger:
+    enabled: true
+    #    probabilistic-sampler:
+    #      sampling-rate: 1.0
+    log-spans: true
+    udp-sender:
+      host: localhost
+      port: 6831
+    # demonstration purpose only
+    const-sampler:
+      decision: true
+    service-name: account-service
+
+# feign configuration
+feign:
+  okhttp:
+    enabled: false
+  httpclient:
+    enabled: true
+  client:
+    config:
+      # payment service connection configuration
+      payment:
+        connectTimeout: 5000
+        readTimeout: 10000
+        loggerLevel: full
+
+client:
+  payment:
+    name: payment
+    url: http://localhost:8087
+  profile:
+    name: profile
+    url: http://localhost:8086
+
+# logbook
+logbook:
+  format:
+    style: json
+  include:
+    - /accounts/**
+  exclude:
+    - /favicon.ico
+    - /actuator/**
+logging:
+  level:
+    ROOT: INFO
+    org:
+      springframework:
+        cloud: INFO
+      zalando:
+        logbook: TRACE
