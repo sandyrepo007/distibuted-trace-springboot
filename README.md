@@ -18,7 +18,6 @@ There are 4 different services in this example. Account Service is the main serv
 Jaeger
 Jaeger is a distributed system provided by Uber.
 It is used for monitoring and troubleshooting microservices-based distributed systems, including:
-
 •	Distributed context propagation
 •	Distributed transaction monitoring
 •	Root cause analysis
@@ -91,4 +90,6 @@ DB Trace Details
 Docker Image
  
 Docker Container
+ 
+
  
